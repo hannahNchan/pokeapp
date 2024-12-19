@@ -1,70 +1,155 @@
-# Getting Started with Create React App
+# Pokedex App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una aplicación web desarrollada en **ReactJS** que utiliza la API [PokeAPI](https://pokeapi.co/) para mostrar información detallada sobre Pokémon. Incluye características como inicio de sesión, búsqueda de Pokémon, y un modal con información detallada.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## **Características principales**
 
-### `npm start`
+1. **Pantalla de Login:**
+   - Validación local de credenciales:
+     - Usuario: `admin`
+     - Contraseña: `admin`
+   - Muestra mensajes claros si las credenciales son incorrectas.
+   - Redirección automática según el estado de sesión.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. **Página principal:**
+   - Barra de búsqueda para encontrar Pokémon.
+   - Consumo de la API de Pokémon con soporte para paginación.
+   - Presentación de cada Pokémon con su nombre y foto.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. **Vista detallada:**
+   - Modal con detalles del Pokémon:
+     - Habilidades (`abilities`).
+     - Movimientos (`moves`).
+     - Formas (`forms`).
 
-### `npm test`
+4. **UI responsiva:**
+   - Diseño atractivo utilizando **Material-UI** como base de CSS.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## **Tecnologías utilizadas**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **ReactJS**: Framework principal para la creación de componentes y gestión de la UI.
+- **Material-UI**: Librería de componentes estilizados para un diseño moderno y responsivo.
+- **PokeAPI**: API pública utilizada para obtener datos de los Pokémon.
+- **Context API**: Manejo del estado global para la autenticación y los datos de la aplicación.
+- **Jest**: Framework de pruebas para garantizar la calidad del código.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## **Instalación y configuración**
 
-### `npm run eject`
+Sigue los pasos a continuación para ejecutar el proyecto en tu máquina local:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### **Requisitos previos**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Node.js instalado (versión 14 o superior).
+- npm instalado (incluido con Node.js).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### **Pasos de instalación**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Clona este repositorio en tu máquina local:
 
-## Learn More
+   ```bash
+   git clone https://github.com/tu_usuario/pokedex-app.git
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Accede al directorio del proyecto:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```bash
+   cd pokedex-app
+   ```
 
-### Code Splitting
+3. Instala las dependencias necesarias:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   ```bash
+   npm i
+   ```
 
-### Analyzing the Bundle Size
+4. Inicia el servidor de desarrollo:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+   ```bash
+   npm start
+   ```
 
-### Making a Progressive Web App
+   Esto abrirá la aplicación en tu navegador en [http://localhost:3000](http://localhost:3000).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## **Pruebas**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Este proyecto incluye pruebas unitarias para garantizar el correcto funcionamiento de los componentes principales. Para ejecutar las pruebas, usa el siguiente comando:
 
-### Deployment
+```bash
+npm run test
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## **Uso de la aplicación**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### **1. Iniciar sesión**
+- Abre la aplicación y usa las credenciales:
+  - Usuario: `admin`
+  - Contraseña: `admin`
+
+### **2. Buscar Pokémon**
+- Usa la barra de búsqueda en la página principal para encontrar Pokémon por su nombre.
+- Navega entre páginas utilizando los controles de paginación.
+
+### **3. Ver detalles del Pokémon**
+- Haz clic en cualquier Pokémon para abrir un modal con información detallada, como habilidades, movimientos y formas.
+
+---
+
+## **Arquitectura del proyecto**
+
+El proyecto sigue una arquitectura basada en componentes, organizada en carpetas para facilitar el mantenimiento y la escalabilidad:
+
+```
+src/
+├── components/       # Componentes reutilizables (barra de búsqueda, tarjetas de Pokémon, etc.)
+├── pages/            # Páginas principales (Login, Página Principal, etc.)
+├── context/          # Manejo del estado global con Context API
+├── services/         # Servicios para consumir la API de Pokémon
+├── styles/           # Estilos globales y personalizados con Material-UI
+└── tests/            # Pruebas unitarias
+```
+
+---
+
+## **API utilizada: PokeAPI**
+
+El proyecto utiliza [PokeAPI](https://pokeapi.co/) para obtener datos sobre Pokémon, incluyendo:
+- Información general (nombre, foto).
+- Detalles avanzados (habilidades, movimientos, formas).
+
+Consulta la documentación oficial de PokeAPI para más información.
+
+---
+
+## **Contribuciones**
+
+¡Este proyecto está abierto a contribuciones! Si tienes ideas o mejoras, sigue estos pasos:
+
+1. Haz un fork del repositorio.
+2. Crea una rama para tu función o corrección:
+   ```bash
+   git checkout -b feature/nueva-funcion
+   ```
+3. Realiza tus cambios y sube los commits.
+4. Envía un pull request con una descripción detallada de los cambios.
+
+---
+
+## **Contacto**
+
+Si tienes preguntas o sugerencias, no dudes en contactarme:
+- **Email:** tu_correo@example.com
+- **GitHub:** [tu_usuario](https://github.com/tu_usuario)
+
+---
+
+¡Gracias por usar Pokedex App! 🚀
