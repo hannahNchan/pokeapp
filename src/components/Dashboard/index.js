@@ -1,0 +1,14 @@
+import React from 'react';
+
+const Dashboard = () => {
+  React.useEffect(() => {
+    document.body.style.backgroundImage = '';
+  }, []);
+  return (
+    <div>
+      <h1>Dashboard</h1>
+    </div>
+  );
+};
+
+export default Dashboard;
