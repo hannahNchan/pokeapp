@@ -26,7 +26,7 @@ const images = [
   '5797356.jpg',
   '9397272.jpg',
   '9397274.jpg',
-  '9397279.jpg',
+  '9397279.jpg'
 ];
 const imagesMobiles = [
   '9397280.jpg',
@@ -40,5 +40,25 @@ const imagesMobiles = [
   '9397241.jpg',
   '8899643.jpg'
 ];
+const pokemonTypes = {
+  normal: '#A8A77A',
+  water: '#6390F0',
+  fighting: '#C22E28',
+  fire: '#EE8130',
+  psychic: '#F95587',
+  grass: '#7AC74C',
+  poison: '#A33EA1',
+  rock: '#B6A136',
+  ground: '#E2BF65',
+  electric: '#F7D02C',
+  flying: '#A98FF3',
+  steel: '#B7B7CE',
+  ice: '#96D9D6',
+  ghost: '#735797',
+  bug: '#A6B91A',
+  dragon: '#6F35FC',
+  dark: '#705746',
+  fairy: '#D685AD'
+};
 const urlImages = 'https://wallpaperaccess.com/full/';
-export default { images, urlImages, imagesMobiles };
+export default { images, urlImages, imagesMobiles, pokemonTypes };

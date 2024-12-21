@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 // import { isMobile } from 'react-device-detect';
+import { Container } from '@mui/material';
 
 import Login from './components/Login';
 // import constants from './utils/constants';
@@ -23,22 +24,14 @@ export default function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              <h1>Esta es la homepage</h1>
-              <hr />
-              <a href="/login">Iniciar Sesion</a>
-            </div>
-          }
-        />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <Container maxWidth={false}>
+                <Dashboard />
+              </Container>
             </ProtectedRoute>
           }
         />
