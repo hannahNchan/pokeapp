@@ -60,5 +60,21 @@ const pokemonTypes = {
   dark: '#705746',
   fairy: '#D685AD'
 };
+const statsColors = {
+  hp: 'green',
+  attack: 'red',
+  defense: 'brown',
+  'special-attack': '#4d0404',
+  'special-defense': '#8d2f81',
+  speed: '#d1cd41'
+};
+const shortNamesStats = {
+  hp: 'HP',
+  attack: 'ATX',
+  defense: 'DEF',
+  'special-attack': 'SATK',
+  'special-defense': 'SDEF',
+  speed: 'SPD'
+};
 const urlImages = 'https://wallpaperaccess.com/full/';
-export default { images, urlImages, imagesMobiles, pokemonTypes };
+export default { images, urlImages, imagesMobiles, pokemonTypes, statsColors, shortNamesStats };
