@@ -19,19 +19,14 @@ const fetchPokemonByName = createAsyncThunk(
 );
 
 const loginPost = createAsyncThunk('pokemons/login', async (credentials) => {
-  const response = await fetch('http://localhost:4000/login', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ ...credentials })
-  });
-  if (!response.status) {
-    throw new Error('Error');
-  }
+  const response = await fetch('http://localhost:3000/login.json');
   const res = await response.json();
-  return res;
+
+  const isCorrect = credentials.admin === res.admin && credentials.password === res.password;
+
+  return isCorrect
+    ? { message: 'Inicio de sesión exitoso.', status: 'ok' }
+    : { message: 'Credenciales incorrectas.', status: 'failed' };
 });
 
 const fetchPokemonByUrl = createAsyncThunk('pokemons/fetchPokemonByUrl', async (url) => {

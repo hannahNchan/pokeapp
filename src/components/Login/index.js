@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  TextField,
-  Typography,
-  Paper,
-  Container
-} from '@mui/material';
+import { Box, Button, TextField, Typography, Paper, Container } from '@mui/material';
+import Alert from '@mui/material/Alert';
 import { styled } from '@mui/system';
 
 import { ReactComponent as Logo } from '../../assets/pokemon_logo.svg';
@@ -33,9 +25,9 @@ const Login = () => {
   const { login } = useAuth();
   const [formData, setFormData] = useState({
     user: '',
-    password: '',
-    rememberMe: false
+    password: ''
   });
+  const [wrong, setWrong] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -48,19 +40,21 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     //dispatch(service.loginPost(formData));
-    const response = await fetch('http://localhost:4000/login', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ ...formData })
-    });
+    const response = await fetch('/login.json');
     const responseSolved = await response.json();
 
-    if (responseSolved.status === 'ok') {
+    const isCorrect =
+      formData.admin === responseSolved.admin && formData.password === responseSolved.password;
+
+    const validateResponse = isCorrect
+      ? { message: 'Inicio de sesión exitoso.', status: 'ok' }
+      : { message: 'Credenciales incorrectas.', status: 'failed' };
+
+    if (validateResponse.status === 'ok') {
+      setWrong(false);
       await login({ username: formData.user });
     } else {
+      setWrong(true);
       console.log('Invalid username or password');
     }
   };
@@ -103,17 +97,7 @@ const Login = () => {
             margin="normal"
           />
 
-          <FormControlLabel
-            control={
-              <Checkbox
-                disabled
-                name="rememberMe"
-                checked={formData.rememberMe}
-                onChange={handleChange}
-              />
-            }
-            label="Recordarme"
-          />
+          {wrong && <Alert severity="error">Invalid username or password</Alert>}
 
           <Button
             type="submit"
