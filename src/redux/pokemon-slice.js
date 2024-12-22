@@ -16,7 +16,14 @@ const pokemonSlice = createSlice({
       isLoged: false
     }
   },
-  reducers: {},
+  reducers: {
+    clearAllData(state) {
+      state.pokemonData.pokemon = null;
+      state.pokemonData.status = 'exitoso';
+      state.pokemonData.error = null;
+      state.pokemonData.pokemonMiniCard = null;
+    }
+  },
   extraReducers: (builder) => {
     const { fetchPokemonByName, loginPost, fetchPokemonByUrl } = pokemonService;
     builder
@@ -63,5 +70,5 @@ const pokemonSlice = createSlice({
   }
 });
 
-export const { storePokemon } = pokemonSlice.actions;
+export const { clearAllData } = pokemonSlice.actions;
 export default pokemonSlice.reducer;
