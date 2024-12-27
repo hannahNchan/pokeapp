@@ -5,4 +5,14 @@ const getRandomElement = (array) => {
   const randomIndex = Math.floor(Math.random() * array.length);
   return array[randomIndex];
 };
-export default getRandomElement;
+const sortPokemonsByName = (array, typeOrder) => {
+  if (typeOrder === 'asc') {
+    return array.sort((a, b) => (a.name > b.name ? 1 : -1));
+  } else {
+    return array.sort((a, b) => (a.name < b.name ? 1 : -1));
+  }
+};
+export default {
+  sortPokemonsByName,
+  getRandomElement
+};

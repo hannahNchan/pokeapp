@@ -8,25 +8,36 @@ import utilities from '../../utils/constants';
 import PokemonDetails from '../PokemonDetails';
 import Loader from '../../ui/loader';
 
-const PokemonDetailsCard = ({ data }) => {
+const PokemonCard = ({ data, type }) => {
   const [pokemon, setPokemon] = useState(null);
   const [openPokeDialog, setOpenPokeDialog] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const fetchPokemon = async () => {
-      try {
-        const response = await fetch(data);
-        if (!response.ok) {
-          throw new Error(`Error fetching data: ${response.status}`);
-        }
-        const result = await response.json();
-        setPokemon(result);
-      } catch (error) {
-        console.error('Error fetching Pokémon:', error);
-        setPokemon(null);
-      }
-    };
+    if (type === 'all') {
+      return setIsVisible(true);
+    }
+    if (pokemon && Object.values(pokemon).length !== 0) {
+      const isFromType = pokemon.types.some((m) => m.type.name === type);
+      setIsVisible(isFromType);
+    }
+  }, [type]);
 
+  const fetchPokemon = async () => {
+    try {
+      const response = await fetch(data);
+      if (!response.ok) {
+        throw new Error(`Error fetching data: ${response.status}`);
+      }
+      const result = await response.json();
+      setPokemon(result);
+    } catch (error) {
+      console.error('Error fetching Pokémon:', error);
+      setPokemon(null);
+    }
+  };
+
+  useEffect(() => {
     if (typeof data === 'string') {
       fetchPokemon();
     } else if (typeof data === 'object' && data !== null) {
@@ -51,8 +62,12 @@ const PokemonDetailsCard = ({ data }) => {
     setOpenPokeDialog(false);
   };
 
+  if (!isVisible) {
+    return null;
+  }
+
   return (
-    <>
+    <Grid size={{ xs: 2, sm: 4, md: 4, lg: 4, xl: 3 }}>
       <PikaDialog open={openPokeDialog} handleClose={onHandleClose}>
         <PokemonDetails pokemon={pokemon} />
       </PikaDialog>
@@ -139,12 +154,13 @@ const PokemonDetailsCard = ({ data }) => {
           </Grid>
         </CardContent>
       </Card>
-    </>
+    </Grid>
   );
 };
 
-PokemonDetailsCard.propTypes = {
-  data: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired
+PokemonCard.propTypes = {
+  data: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  type: PropTypes.string
 };
 
-export default PokemonDetailsCard;
+export default PokemonCard;
