@@ -1,6 +1,7 @@
 {
   "name": "pokeapp",
   "version": "0.1.0",
+  "homepage": "https://hannahNchan.github.io/pokeapp",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -29,7 +30,9 @@
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "lint:fix": "eslint -fix .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -63,6 +66,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.37.2",
+    "gh-pages": "^6.2.0",
     "globals": "^15.14.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.11",

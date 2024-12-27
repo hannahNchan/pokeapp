@@ -14,6 +14,11 @@ const pokemonSlice = createSlice({
     loginInfo: {
       status: 'exitoso',
       isLoged: false
+    },
+    types: {
+      status: 'exitoso',
+      types: [],
+      error: null
     }
   },
   reducers: {
@@ -22,10 +27,13 @@ const pokemonSlice = createSlice({
       state.pokemonData.status = 'exitoso';
       state.pokemonData.error = null;
       state.pokemonData.pokemonMiniCard = null;
+      state.types.status = 'exitoso';
+      state.types.types = [];
+      state.types.error = null;
     }
   },
   extraReducers: (builder) => {
-    const { fetchPokemonByName, loginPost, fetchPokemonByUrl } = pokemonService;
+    const { fetchPokemonByName, loginPost, fetchPokemonByUrl, fetchAllTypes } = pokemonService;
     builder
       .addCase(fetchPokemonByName.pending, (state) => {
         state.pokemonData.status = 'cargando';
@@ -37,6 +45,19 @@ const pokemonSlice = createSlice({
       .addCase(fetchPokemonByName.rejected, (state, action) => {
         state.pokemonData.status = 'fallo';
         state.pokemonData.error = action.error.message;
+      });
+
+    builder
+      .addCase(fetchAllTypes.pending, (state) => {
+        state.types.status = 'cargando';
+      })
+      .addCase(fetchAllTypes.fulfilled, (state, action) => {
+        state.types.status = 'exitoso';
+        state.types.types = action.payload.results;
+      })
+      .addCase(fetchAllTypes.rejected, (state, action) => {
+        state.types.status = 'fallo';
+        state.types.error = action.error.message;
       });
 
     builder

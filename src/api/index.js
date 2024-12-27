@@ -18,6 +18,16 @@ const fetchPokemonByName = createAsyncThunk(
   }
 );
 
+const fetchAllTypes = createAsyncThunk('pokemons/fetchPokemonTypes', async () => {
+  const response = await fetch('https://pokeapi.co/api/v2/type/');
+
+  if (!response.ok) {
+    throw new Error('Error fetching the Type');
+  }
+
+  return await response.json();
+});
+
 const loginPost = createAsyncThunk('pokemons/login', async (credentials) => {
   const response = await fetch('http://localhost:3000/login.json');
   const res = await response.json();
@@ -38,4 +48,4 @@ const fetchPokemonByUrl = createAsyncThunk('pokemons/fetchPokemonByUrl', async (
   return res;
 });
 
-export default { fetchPokemonByName, loginPost, fetchPokemonByUrl };
+export default { fetchPokemonByName, loginPost, fetchPokemonByUrl, fetchAllTypes };

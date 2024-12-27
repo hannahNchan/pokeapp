@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 export const useDynamicBackground = (shouldApply, getImage) => {
   useEffect(() => {
     if (shouldApply) {
-      document.body.style.backgroundImage = `url(${getImage()})`;
+      document.body.style.backgroundImage = `url(${getImage})`;
       document.body.style.backgroundRepeat = 'no-repeat';
       document.body.style.backgroundSize = 'cover';
       document.body.style.backgroundPosition = 'center center';
